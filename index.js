@@ -161,6 +161,17 @@ class Instructor extends Lambdasian {
     this.catchPhrase = member.catchPhrase;
   }
 
+  demo (subject) {
+
+    return `Today we are learning about ${subject} where subject is the param pass in.`
+
+  }
+
+  grade (Student, subject) {
+
+    return `${Student.name} receives a perfect score on ${subject}`
+  }
+
 }
 
 /*
@@ -183,7 +194,7 @@ class Student extends Lambdasian {
     super(member);
     this.previousBackground = member.previousBackground;
     this.className = member.className;
-    this.favSubjects = member.favSubjects;
+    this.favSubjects = member.favSubjects || []; // if member.favSubjects isn't passed, an empty array is passed.
   }
 
   listSubjects () {
@@ -220,15 +231,10 @@ class Student extends Lambdasian {
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 class ProjectManager extends Lambdasian {
-  constructor(gradClassName, favInstructor) {
-    super(name);
-    super(age);
-    super(location);
-    super(specialty);
-    super(favLanguage);
-    super(catchPhrase);
-    this.gradClassName = gradClassName;
-    this.favInstructor = favInstructor;
+  constructor(member) {
+    super(member);
+    this.gradClassName = member.gradClassName;
+    this.favInstructor = member.favInstructor;
   }
 
   standUp (channel) {
@@ -237,7 +243,7 @@ class ProjectManager extends Lambdasian {
 
   }
 
-  debugsCode (students, subject) {
+  debugsCode (Student, subject) {
 
     return `${this.name} debugs ${Student.name}'s code on ${subject}.`
   }
