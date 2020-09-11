@@ -125,7 +125,7 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  constructor() {
+  constructor(member = {name: "", age: 0, location: ""}) {
     this.name = name;
     this.age = age;
     this.location = location;
@@ -155,9 +155,7 @@ class Lambdasian {
 */
 class Instructor extends Lambdasian {
   constructor(specialty, favLanguage, catchPhrase) {
-    super(name);
-    super(age);
-    super(location);
+    super(Lambdasian);
     this.specialty = specialty;
     this.favLanguage = favLanguage;
     this.catchPhrase = catchPhrase;
@@ -180,7 +178,31 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian {
+  constructor(previousBackground, className, favSubjects) {
+    super(name, age , location);
+    this.previousBackground = previousBackground;
+    this.className = className;
+    this.favSubjects = [favSubjects];
+  }
+
+  listSubjects () {
+
+    return `Loving ${this.favSubjects}.`
+
+  }
+
+  PRAssignment (subject) {
+
+    return `${Student.name} has submitted a PR for ${subject}.`
+
+  }
+
+  sprintChallenge (subject) {
+
+    return `${Student.name} has submitted a PR for ${subject}.`
+
+  }
 
 }
 
@@ -197,7 +219,28 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Lambdasian {
+  constructor(gradClassName, favInstructor) {
+    super(name);
+    super(age);
+    super(location);
+    super(specialty);
+    super(favLanguage);
+    super(catchPhrase);
+    this.gradClassName = gradClassName;
+    this.favInstructor = favInstructor;
+  }
+
+  standUp (channel) {
+
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+
+  }
+
+  debugsCode (students, subject) {
+
+    return `${this.name} debugs ${Student.name}'s code on ${subject}.`
+  }
 
 }
 
