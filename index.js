@@ -41,6 +41,32 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+    this.poop = false;
+  }
+
+  eat (someFood) {
+
+    for (let i = 0; i < 10; i++) {
+
+      if (this.stomach[i] < 10) {
+
+        this.stomach = this.stomach.push[someFood];
+
+      } else {
+
+        this.stomach.length = 0;
+
+        return `${this.name} is full and cannot eat any more. ${this.name} may need to use the restroom.`
+
+      }
+
+    }
+
+  }
 
 }
 
@@ -59,6 +85,30 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.tank = 0;
+    this.milesPerGallon = milesPerGallon;
+    this.odometer = 0;
+  }
+
+  fill (gallons) {
+
+    this.tank += gallons;
+
+  }
+
+  drive (distance) {
+    this.odometer += distance;
+    this.tank -= distance/this.milesPerGallon;
+
+    if ((this.tank * this.milesPerGallon) < distance) {
+
+      return `I ran out of fuel at ${this.odometer} miles.`;
+
+    }
+
+  }
 
 }
 
@@ -75,6 +125,17 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(member) {
+    this.name = member.name;
+    this.age = member.age;
+    this.location = member.location;
+  }
+
+  speak () {
+
+    return `Hello, my name is ${this.name}, I am from ${this.location}.`
+
+  }
 
 }
 
@@ -92,7 +153,24 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(member) {
+    super(member);
+    this.specialty = member.specialty;
+    this.favLanguage = member.favLanguage;
+    this.catchPhrase = member.catchPhrase;
+  }
+
+  demo (subject) {
+
+    return `Today we are learning about ${subject} where subject is the param pass in.`
+
+  }
+
+  grade (Student, subject) {
+
+    return `${Student.name} receives a perfect score on ${subject}`
+  }
 
 }
 
@@ -111,7 +189,31 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian {
+  constructor(member) {
+    super(member);
+    this.previousBackground = member.previousBackground;
+    this.className = member.className;
+    this.favSubjects = member.favSubjects || []; // if member.favSubjects isn't passed, an empty array is passed.
+  }
+
+  listSubjects () {
+
+    return `Loving ${this.favSubjects}.`
+
+  }
+
+  PRAssignment (subject) {
+
+    return `${Student.name} has submitted a PR for ${subject}.`
+
+  }
+
+  sprintChallenge (subject) {
+
+    return `${Student.name} has begun sprint challenge for ${subject}.`
+
+  }
 
 }
 
@@ -128,7 +230,23 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Lambdasian {
+  constructor(member) {
+    super(member);
+    this.gradClassName = member.gradClassName;
+    this.favInstructor = member.favInstructor;
+  }
+
+  standUp (channel) {
+
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+
+  }
+
+  debugsCode (Student, subject) {
+
+    return `${this.name} debugs ${Student.name}'s code on ${subject}.`
+  }
 
 }
 
